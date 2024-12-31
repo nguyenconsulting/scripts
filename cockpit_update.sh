@@ -3,7 +3,7 @@
 #==============================================================================
 # Cockpit Certificate Updater for RaspbianPi v0.1
 # Created: [December 30, 2024]
-# Last Modified: [December 31, 2024]
+# Last Modified: [December 30, 2024]
 #==============================================================================
 
 # Main header function
@@ -26,7 +26,7 @@ status() {
     esac
 }
 
-# Check if running as sudoer or root
+# Ensure the script is run as root
 if [[ $EUID -ne 0 ]]; then
     status critical "This script must be run as root or with sudo."
     exit 1
@@ -34,7 +34,7 @@ fi
 
 main_header
 
-# Check if cockpit is installed
+# Check if Cockpit is installed
 if ! dpkg -l | grep -q cockpit; then
     status warning "Cockpit is not installed."
     read -p "Would you like to install Cockpit? (y/n): " install_cockpit
@@ -274,12 +274,13 @@ status ok "Certificate update process completed successfully."
 #==============================================================================
 # Change Log
 #==============================================================================
-# [December 30, 2024] - Initial version created.
-# [December 31, 2024] - Added support for fetching certificates from TrueNAS.
-# [December 31, 2024] - Added support for testing certificate connections using the API.
-# [December 31, 2024] - Added support for checking if certificates are valid against each other.
-# [December 31, 2024] - Added support for checking certificate expiry.
-# [December 31, 2024] - Added support for updating certificates from local files.
-# [December 31, 2024] - Added support for creating and managing a secrets file.
-# [December 31, 2024] - Added support for prompting user input for remote server, API token, and certificate name.
-# [December 31, 2024] - Added support for restarting the Cockpit service after updating certificates.
+# [December 30, 2024] 
+# - Initial version created.
+# - Added support for fetching certificates from TrueNAS.
+# - Added support for testing certificate connections using the API.
+# - Added support for checking if certificates are valid against each other.
+# - Added support for checking certificate expiry.
+# - Added support for updating certificates from local files.
+# - Added support for creating and managing a secrets file.
+# - Added support for prompting user input for remote server, API token, and certificate name.
+# - Added support for restarting the Cockpit service after updating certificates.
